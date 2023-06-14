@@ -14,9 +14,7 @@ export default class FullList implements List {
 
     static instance: FullList = new FullList()
 
-    private constructor (
-        private _list: ListItem[] = []
-    ){}
+    private constructor ( private _list: ListItem[] = [] ){}
 
     get list():ListItem[] { return this._list }
 
@@ -28,12 +26,8 @@ export default class FullList implements List {
 
         parsedList.forEach(itemObj => {
            const newListItem = new ListItem( itemObj._id, itemObj._item, itemObj._checked )  
-           FullList.instance.addItem(newListItem)
-        })
-
-
-        
-    }
+           FullList.instance.addItem(newListItem)})
+        }
 
     save(): void { 
         localStorage.setItem("myList", JSON.stringify(this._list))
@@ -53,8 +47,5 @@ export default class FullList implements List {
         this._list = this._list.filter(item => item.id !== id)
         this.save()
     }
-
-
-
 
 }
